@@ -212,6 +212,8 @@
                 </section>
                 <section id="info" class="info section">
                     <div class="info-container inner">
+                        <h2><span>information</span></h2>
+                        <p class="section-title">店舗案内</p>
                         <div class="info-contents">
                             <div class="info-image">
                                 <img src="images/access.png" alt="">
@@ -237,6 +239,14 @@
                                 </table>
                                 <div class="google-map"><a href="" target="_blank"><i class="fas fa-external-link-alt"></i>GoogleMap</a></div>
                             </div>
+                        </div><!-- /.info-contents -->
+                        <div class="info-inside">
+                            <div class="info-inside-item">
+                                <div class="inside-title">フェイシャルエステルーム・ホワイト</div>
+                                <div class="inside-image">
+                                    <img src="" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -254,26 +264,26 @@
                 <p class="section-title">お問い合わせ</p>
                 <p class="contact-text">フェイシャルエステや製品についてのご質問、ご予約などお気軽にお送りください。<br>営業日3日以内にお返事いたします。
                 </p>
-                <form class="contact-form" action="" method="POST">
+                <form id="js-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeTkGx2z5nXk-iTLDhRQZO2BdddZ-aEJ6Oq8bRdowgOqnQR1w/formResponse" class="contact-form" method="POST">
                     <dl class="contact-list">
                         <div class="contact-item-wrap">
                             <div class="contact-item">
                                 <dt class="contact-item-title">お名前<span class="required">必須</span></dt>
-                                <dd class="contact-item-input"><input type="text" name="" required></dd>
+                                <dd class="contact-item-input"><input type="text" name="entry.613455224" required></dd>
                             </div>
                             <p class="example">（例）山田花子</p>
                         </div>
                         <div class="contact-item-wrap">
                             <div class="contact-item">
                                 <dt class="contact-item-title">フリガナ<span class="required">必須</span></dt>
-                                <dd class="contact-item-input"><input type="text" name="" required></dd>
+                                <dd class="contact-item-input"><input type="text" name="entry.1825114403" required></dd>
                             </div>
                             <p class="example">（例）ヤマダハナコ</p>
                         </div>
                         <div class="contact-item-wrap">
                             <div class="contact-item">
                                 <dt class="contact-item-title">メールアドレス<span class="required">必須</span></dt>
-                                <dd class="contact-item-input"><input type="email" name="" required></dd>
+                                <dd class="contact-item-input"><input type="email" name="emailAddress" required></dd>
                             </div>
                             <p class="example">（例）example@gmail.com</p>
                         </div>
@@ -281,7 +291,7 @@
                             <div class="contact-item">
                                 <dt class="contact-item-title">お問い合わせ内容<span class="required">必須</span></dt>
                                 <dd class="contact-item-input">
-                                    <textarea name="" required></textarea>
+                                    <textarea name="entry.1625421472"></textarea>
                                 </dd>
                             </div>
                         </div>
@@ -289,15 +299,22 @@
                     <div class="contact-footer">
                         <p class="contact-footer-text">
                             <label class="contact-privacy">
-                                <input type="checkbox" name="" required>
+                                <input class="contact-privacy-input" type="checkbox" name="entry.923851529" value="プライバシーポリシーに同意" required>
+                                <span class="contact-privacy-check"></span>
                             </label>
-                            <a href="#" class="contact-privacy-link">プライバシーポリシー</a>に同意します。<br class="is-sm"><span class="required privacy-required">必須</span>
+                            <a href="#" class="contact-privacy-link">プライバシーポリシー</a>に同意します。<span class="required privacy-required">必須</span>
                         </p>
                         <div class="contact-footer-submit">
                             <button class="submit-btn -submit" type="submit">送信</button>
                         </div>
                     </div>
                 </form>
+                <div id="js-success" class="contact-message">
+                    <p>送信完了しました。ありがとうございました。</p>
+                  </div>
+                  <div id="js-error" class="contact-message -error">
+                    <p>送信に失敗しました。ページを更新して再度送信してください。</p>
+                  </div>
             </div>
         </section>
     </div>

@@ -917,6 +917,9 @@ img {
     margin-top: 5px;
     margin-left: auto;
     color: rgb(155, 147, 147);
+    @include mq('sm') {
+        margin-left: 0;
+    }
 }
 
 .contact-item-title {
@@ -957,6 +960,7 @@ img {
     flex: 0 0 320px;
     background: #fff;
     text-align: left;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
 }
 
 .contact-footer {
@@ -968,6 +972,11 @@ img {
 
     .contact-footer-submit {
         margin-top: 50px;
+    }
+    @include mq('sm') {
+        .contact-privacy-link {
+            font-size: 0.8rem;
+        }
     }
 }
 
@@ -999,6 +1008,9 @@ img {
             background: $color-main;
         }
     }
+    @include mq('sm') {
+        padding: 60px 7% 90px 7%;
+    }
 }
 
 .submit-btn {
@@ -1016,7 +1028,50 @@ img {
 
 }
 
+.contact-privacy {
+    position: relative;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+}
 
+.contact-privacy-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    &:checked + .contact-privacy-check {
+        width: 10px;
+        border-top: 0;
+        border-left: 0;
+        border-color: rgb(41, 151, 219);
+        transform: rotate(45deg);
+        background: transparent;
+        top: -5px;
+        left: 5px;
+    }
+}
+
+.contact-privacy-check {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 1px solid $color-text;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.contact-privacy-link {
+    color: rgb(41, 151, 219);
+    border-bottom: 1px solid rgb(41, 151, 219);
+}
+
+.contact-message {
+    display: none;
+}
 
 
 /*
@@ -1106,7 +1161,7 @@ img {
         a {
             line-height: 2;
             &:hover {
-                text-decoration: underline;
+                border-bottom: 1px solid $color-text;
             }
         }
     }
