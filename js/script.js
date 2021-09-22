@@ -63,5 +63,7 @@ $(document).ready(function() {
     });
     return false; 
   }); 
+  //wow
+ new WOW().init();
 
 })

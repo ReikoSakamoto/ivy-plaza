@@ -225,17 +225,21 @@ img {
   margin: 0 auto;
 }
 
+.hero-message > p span {
+  display: inline-block;
+}
+
 @media (max-width: 767px) {
   .hero-message > p {
-    font-size: 1rem;
-    line-height: 1.8;
+    font-size: 1.19rem;
+    line-height: 1.9;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1239px) {
   .hero-message > p {
-    font-size: 1rem;
-    line-height: 1.8;
+    font-size: 1.2rem;
+    line-height: 1.9;
   }
 }
 
@@ -870,26 +874,48 @@ img {
 **********************************
 */
 .info {
-  background: url(../images/contact-bg.png) no-repeat center center/cover;
+  margin-top: 65px;
+  padding: 80px 10px;
+  background-image: url(../images/IVYplaza.png);
 }
 
 @media (max-width: 767px) {
   .info {
-    background: #F7F7F7;
+    margin-top: 40px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 }
 
 .info-container {
-  padding: 130px 0 100px 0;
+  text-align: center;
 }
 
-@media (max-width: 767px) {
-  .info-container {
-    padding: 100px 0;
-  }
+.info-container h2 {
+  display: inline-block;
+  font-size: .88rem;
+  position: relative;
+  padding: 0 30px;
+}
+
+.info-container h2::before {
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 0;
+  width: 100%;
+  height: 1px;
+  content: '';
+  background: #000;
+}
+
+.info-container h2 span {
+  position: relative;
+  padding: 0 1em;
+  background: #fff;
 }
 
 .info-contents {
+  margin-top: 60px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1003,6 +1029,47 @@ img {
   text-decoration: underline;
 }
 
+.info-inside {
+  margin-top: 50px;
+}
+
+.info-inside-item {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .info-inside-item {
+    width: 100%;
+  }
+}
+
+.info-inside-images {
+  margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.info-inside-images :nth-child(n+1) {
+  margin-left: 10px;
+}
+
+.info-inside-images img {
+  height: 280px;
+  width: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+  .info-inside-images img {
+    height: auto;
+  }
+}
+
 /*
 **********************************
 * コンタクトコンテナ
@@ -1022,8 +1089,9 @@ img {
 }
 
 .contact textarea {
-  min-height: 122px;
+  min-height: 140px;
   resize: vertical;
+  padding: .8em .5em;
 }
 
 .contact-text {
@@ -1034,12 +1102,12 @@ img {
 }
 
 .contact-form {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .contact-list {
   max-width: 500px;
-  margin: 0 auto;
+  margin: 30px auto;
 }
 
 .contact-item-wrap + .contact-item-wrap {
@@ -1390,11 +1458,4 @@ img {
 
 .totop a:hover {
   opacity: 1;
-}
-
-@media (max-width: 767px) {
-  .totop {
-    right: 3%;
-    bottom: 3%;
-  }
 }
