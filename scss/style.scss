@@ -120,12 +120,13 @@ img {
 */
 
 .header {
-    // position: fixed;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 10;
     // background-image: linear-gradient( 135deg, #C2FFD8 10%, #465EFB 100%);
-    background-image: linear-gradient( 45deg, #e2ebe9 20%, #fff 100%);
+    // background-image: linear-gradient( 45deg, #e2ebe9 20%, #fff 100%);
+    background: transparent;
     width: 100%;
 }
 
@@ -140,6 +141,10 @@ img {
     font-family: 'Kaisei HarunoUmi', serif;
     font-size: 2.2rem;
     margin-right: auto;
+    transition: opacity .2s;
+    &:hover {
+        opacity: .7;
+    }
 }
 
 .header-nav {
@@ -168,11 +173,41 @@ img {
             margin-top: 50px;
         }
     }
+ 
 }
 .header-nav-item-link {
+    color: $color-text;
     font-size: 0.9rem;
     display: block;
     line-height: 60px;
+    opacity: .7;
+    position: relative;
+    transition: all .2s;
+    &:hover {
+        opacity: 1;
+        &::before {
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #f6b7aa;
+            position: absolute;
+            top: 50%;
+            left: -8px;
+            transform: translateY(-50%);
+        }
+        &::after {
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #f6b7aa;
+            position: absolute;
+            top: 50%;
+            right: -8px;
+            transform: translateY(-50%);
+        }
+    }
     @include mq('sm') {
         font-size: 1.1rem;
     }
@@ -192,6 +227,7 @@ img {
     width: 100%;
     background: url(../images/hero.jpg) no-repeat center center / cover;
     padding-bottom: 120px;
+    padding-top: 100px;
 
     @include mq('sm') {
         background-position: left;
@@ -675,17 +711,17 @@ img {
     & + & {
         border-bottom: 1px solid #AFB7BE;
     }
-    &::after {
-        content: "";
-        position: absolute;
-        top: 42%;
-        right: 10px;
-        width: 20px;
-        height: 20px;
-        border-top: 1px solid $color-text;
-        border-right: 1px solid $color-text;
-        transform: rotate(45deg);
-    }
+    // &::after {
+    //     content: "";
+    //     position: absolute;
+    //     top: 42%;
+    //     right: 10px;
+    //     width: 20px;
+    //     height: 20px;
+    //     border-top: 1px solid $color-text;
+    //     border-right: 1px solid $color-text;
+    //     transform: rotate(45deg);
+    // }
     .news-date {
         font-size: 0.9rem;
         font-weight: 700;
@@ -702,9 +738,9 @@ img {
         padding: 1.2rem 0;
         transition: background .2s;
 
-        &:hover {
-            background: #f7f7f7;
-        }
+        // &:hover {
+        //     background: #f7f7f7;
+        // }
     }
 }
 
@@ -880,7 +916,7 @@ img {
     text-align: center;
     a {
         &:hover {
-            text-decoration: underline;
+            border-bottom: 1px solid $color-text;
         }
     }
 }
@@ -1116,6 +1152,7 @@ img {
 }
 
 .contact-message {
+    margin-top: 30px;
     display: none;
 }
 
@@ -1150,6 +1187,10 @@ img {
 .footer-logo {
     font-family: 'Kaisei HarunoUmi', serif;
     font-size: 2rem;
+    transition: opacity .2s;
+    &:hover {
+        opacity: .7;
+    }
 
 }
 
