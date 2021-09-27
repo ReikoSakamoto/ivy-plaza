@@ -1,6 +1,4 @@
 $(document).ready(function() {
-// drawerjs
-  $('.drawer').drawer();
 
 // スムーススクロール
     // #から始まるURLがクリックされた時
@@ -63,7 +61,17 @@ $(document).ready(function() {
     });
     return false; 
   }); 
+
   //wow
  new WOW().init();
 
+ //ハンバーガーメニュー
+ $(function() {
+  $('.navbtn').on('click', function () {
+   $(this).toggleClass('close');
+   $('.nav-menu').toggleClass('open');
+  });
+ });
+
 })
+
