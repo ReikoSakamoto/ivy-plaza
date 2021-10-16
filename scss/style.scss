@@ -7,15 +7,19 @@
 $color-main: #F7F7F7;
 $color-accent: #F875EF;
 $color-text: #2E3740;
+$color-accent-blue: #3EA1D1;
 
 $layout-width-inner: 1240px;
+
+$drawer-width: 24px; //ドロワーの幅
+$drawer-height: 2px; //ドロワー線の高さ
+$drawer-color: #3EA1D1; //ドロワー線の色
 
 //マップ型変数breakpointsを定義
 $breakpoints: (
 //キー : 値
   'sm': "(max-width: 767px)", 
-  'md': "(min-width: 768px) and (max-width: #{$layout-width-inner - 1px})", 
-  'lg': "(min-width: #{$layout-width-inner})"
+  'md': "(min-width: 768px)", 
 ) !default;
 
 //メディアクエリ用のmixinを定義。
@@ -35,10 +39,22 @@ html {
     // }
 }
 
+html.is-fixed,
+html.is-fixed body {
+    @include mq('sm') {
+        height: 100%;
+        overflow: hidden;
+    }
+}
+
 body {
     font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
     color: $color-text;
     background: #fff;
+}
+
+.wrap {
+    overflow: hidden;
 }
 
 img {
@@ -55,7 +71,6 @@ img {
 
 .inner {
     max-width: $layout-width-inner;
-    width: 100%;
     margin: 0 auto;
 
     @include mq('sm') {
@@ -63,17 +78,14 @@ img {
     }
 
     @include mq('md') {
-        padding: 0 4%;
-    }
-
-    @include mq('lg') {
         padding: 0 20px;
     }
 }
 
 .cta-btn {
-    // width: 326px;
+    width: 360px;
     max-width: 100%;
+    margin: 0 auto;
     background: $color-accent;
     text-align: center;
     border-radius: 8px;
@@ -81,7 +93,7 @@ img {
     transition: background .2s;
 
     @include mq('sm') {
-        width: 340px;
+        width: 332px;
     }
 
     &:hover {
@@ -93,7 +105,7 @@ img {
         padding: 1.3em 1em;
         color: #fff;
 
-        @include mq('lg') {
+        @include mq('md') {
             font-size: 1.1rem;
         }
     }
@@ -115,9 +127,6 @@ img {
 }
 
 .is-sm {
-    @include mq('lg') {
-        display: none;
-    }
     @include mq('md') {
         display: none;
     }
@@ -128,128 +137,143 @@ img {
 * ヘッダーコンテナ
 **********************************
 */
-
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    // background-image: linear-gradient( 135deg, #C2FFD8 10%, #465EFB 100%);
-    // background-image: linear-gradient( 45deg, #e2ebe9 20%, #fff 100%);
-    background: transparent;
-    width: 100%;
+    background: #F7F7F7;
 }
 
-.header-container {
-    height: 70px;
-    // display: flex;
-    // flex-direction: row;
-    // align-items: center;
+.header-inner {
+    height: 50px;
+    align-items: center;
 }
 
-.header-logo {
-    font-family: 'Kaisei HarunoUmi', serif;
-    font-size: 2.2rem;
-    margin-right: auto;
-    transition: opacity .2s;
-    &:hover {
-        opacity: .7;
-    }
-}
-
-@include mq('sm') {
-    nav {
-        width: 100%;
-        height: 70px;
-        position: relative;
-        background: transparent;
-    }
-    
-    .drawer {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        height: 70px;
-        padding: 0 4%;
-    }
-    
-    .navbtn {
+.header-ttl {
+        font-family: 'Kaisei HarunoUmi', serif;
+        font-size: 2.2rem;
         z-index: 9999;
-        display: block;
-        width: 70px;
-        height: 70px;
-        background-image: url(../images/open.svg);
-        background-repeat: no-repeat;
-        background-position: center right;
-        &.close {
-            background-image: url(../images/close.svg);
-        }
-    }
-    
-    .nav-menu {
-        background: #fff;
-        -webkit-transform: translateX(-100%);
-        transform: translateX(-100%);
-        -webkit-transition:ease .5s;
-        transition:ease .5s;
-        z-index:1000;
-        ul {
-            li {
-                padding: 1.3em;
-                border-bottom: 1px solid #CCC;
-            }
-        }
-    
-        &.open {
-            -webkit-transform:translateX(0);
-            transform:translateX(0);
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-    }
+        opacity: 1;
+  }
+
+/*========= ナビゲーションのためのCSS ===============*/
+#g-nav {
+    /*position:fixed;にし、z-indexの数値を小さくして最背面へ*/
+    position:fixed;
+  z-index: -1;
+  opacity: 0;/*はじめは透過0*/
+    /*ナビの位置と形状*/
+  top:0;
+  width:100%;
+    height: 100vh;/*ナビの高さ*/
+  background:$color-accent-blue;
+    /*動き*/
+  transition: all 0.3s;
 }
 
-@media screen and (min-width: 720px) {
-    nav{
-     max-width: $layout-width-inner;
-     width: 100%;
-     margin: 0 auto;
-     padding: 0 20px;
-     display: flex;
-     flex-direction: row;
-     align-items: center;
-    }
-    
-    .navbtn{
-     display: none;
-    }
-    
-    .nav-menu{
-     width: 100%;
-     -webkit-transform: translateX(0);
-     transform: translateX(0);
-     background: transparent;
-     ul {
-         height: 70px;
-         display: flex;
-         flex-wrap: wrap;
-         justify-content: flex-end;
-         align-items: center;
-         li {
-             border-bottom: none;
-             a {
-                 display: block;
-                 padding: .8em .8em .3em .8em;
-                 transition: color .2s;
-                 &:hover {
-                     color: #3EA1D1;
-                 }
-             }
-         }
-     }
-    }
+/*アクティブクラスがついたら透過なしに*/
+#g-nav.panelactive {
+    opacity: 1;
+    z-index: 999;
+
 }
+
+/*ナビゲーションの縦スクロール*/
+#g-nav.panelactive #g-nav-list {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#g-nav ul {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#g-nav.panelactive ul {
+    display: block;
+}
+
+/*リストのレイアウト*/
+#g-nav li {
+    text-align: center;
+}
+
+#g-nav li a {
+    color: #fff;
+    display: block;
+    padding: 16px;
+    letter-spacing: .1em;
+}
+
+/*========= ボタンのためのCSS ===============*/
+
+.openbtn1{
+    position:fixed;
+      z-index: 9999;/*ボタンを最前面に*/
+    top: 0;
+    right: 10px;
+    cursor: pointer;
+      width: 50px;
+      height:50px;
+}
+    
+  /*×に変化*/  
+  .openbtn1 span{
+      display: inline-block;
+      transition: all .4s;
+      position: absolute;
+      left: 14px;
+      height: 3px;
+      border-radius: 2px;
+    background-color: #333;
+      width: 45%;
+    }
+  
+  .openbtn1 span:nth-of-type(1) {
+    top:15px; 
+  }
+  
+  .openbtn1 span:nth-of-type(2) {
+    top:23px;
+  }
+  
+  .openbtn1 span:nth-of-type(3) {
+    top:31px;
+  }
+  
+  .openbtn1.active span:nth-of-type(1) {
+      top: 18px;
+      left: 18px;
+      transform: translateY(6px) rotate(-45deg);
+      width: 45%;
+  }
+  
+  .openbtn1.active span:nth-of-type(2) {
+    opacity: 0;
+  }
+  
+  .openbtn1.active span:nth-of-type(3){
+      top: 30px;
+      left: 18px;
+      transform: translateY(-6px) rotate(45deg);
+      width: 45%;
+  }
+
+
+  
+  
+
+/*
+**********************************
+* メインコンテナ
+**********************************
+*/
+
 /*
 **********************************
 * ヒーローコンテナ
@@ -260,45 +284,41 @@ img {
     width: 100%;
     background: url(../images/hero.jpg) no-repeat center center / cover;
     padding-bottom: 120px;
-    padding-top: 100px;
 
     @include mq('sm') {
-        background-position: left;
-        padding-top: 20px;
+        background-position: 24% center;
     }
 }
 
 .hero-container {
-    padding-top: 120px;
+    padding-top: 160px;
+    @include mq('sm') {
+        padding-top: 120px;
+    }
 }
 
 .hero-message {
     max-width: 450px;
     width: 100%;
-    >p {
-        font-family: 'Shippori Mincho', serif;
-        margin: 0 auto;
-        span {
-            display: inline-block;
-        }
-        
-        @include mq('sm') {
-            // writing-mode: vertical-rl; 
-            font-size: 1.19rem;
-            line-height: 1.9;
-        }
+}
 
-        @include mq('md') {
-            font-size: 1.2rem;
-            line-height: 1.9;
+.hero-message-txt {
+    font-family: 'Shippori Mincho', serif;
+    margin: 0 auto;
+    span {
+        display: inline-block;
+    }
+    
+    @include mq('sm') {
+        // writing-mode: vertical-rl; 
+        font-size: 1.1rem;
+        line-height: 2;
+    }
 
-        }
-        
-        @include mq('lg') {
-            // writing-mode: vertical-rl;
-            line-height: 2.5;
-            font-size: 1.1rem;
-        }
+    @include mq('md') {
+        // writing-mode: vertical-rl;
+        line-height: 2;
+        font-size: 1.1rem;
     }
 }
 
@@ -543,7 +563,7 @@ img {
     .line-link {
         color: #fff;
 
-        @include mq('lg') {
+        @include mq('md') {
             font-size: 1rem;
         }
     }
@@ -551,7 +571,7 @@ img {
 
 .common-link {
     margin: 60px auto 0;
-    max-width: 350px;
+    max-width: 330px;
     width: 100%;
     border-radius: 100px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
@@ -674,7 +694,6 @@ img {
 .es-link {
     margin: 16px auto 0;
     max-width: 350px;
-    width: 100%;
     a {
         display: block;
         margin-top: 3px;
@@ -900,7 +919,7 @@ img {
 }
 
 .info-text {
-    @include mq('lg') {
+    @include mq('md') {
         flex: 0 1 auto;
         margin-left: 40px;
         
@@ -920,8 +939,8 @@ img {
 
 .table {
     margin-top: 20px;
-    width: 400px;
-    max-width: 100%;
+    max-width: 400px;
+    width: 100%;
     @include mq('sm') {
         max-width: 340px;
     }
@@ -1029,25 +1048,23 @@ img {
 
 .contact-list {
     max-width: 500px;
+    width: 100%;
     margin: 30px auto;
-}
-
-.contact-item-wrap {
-    & + & {
-        margin-top: 30px;
-    } 
 }
 
 .contact-item {
     display: flex;
     flex-direction: row;
+    margin-top: 20px;
+    
     @include mq('sm') {
         display: block;
     }
 }
 
 .example {
-    width: 320px;
+    max-width: 320px;
+    width: 100%;
     text-align: left;
     margin-top: 5px;
     margin-left: auto;
@@ -1134,6 +1151,7 @@ img {
 }
 
 .submit-btn {
+    margin-top: 50px;
     width: 100px;
     height: 40px;
     line-height: 40px;
@@ -1211,6 +1229,7 @@ img {
 
 .footer-container {
     max-width: 1000px;
+    width: 100%;
     padding: 20px 20px 30px 20px;
     margin: 0 auto;
     @include mq('sm') {
@@ -1335,5 +1354,4 @@ img {
             opacity: 1;
         }
     }
-
 }
