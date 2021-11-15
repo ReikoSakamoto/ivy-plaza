@@ -128,6 +128,7 @@ img {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  height: 52px;
   padding: 0 4%;
 }
 
@@ -178,71 +179,160 @@ img {
   margin-left: 6px;
 }
 
-.open-btn1 {
-  display: block;
-  position: fixed;
-  z-index: 9999;
-  /*ボタンを最前面に*/
-  top: 1rem;
-  right: 5rem;
-  cursor: pointer;
-  width: 50px;
-  height: 50px;
+.hamburger-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  position: relative;
+  width: 21px;
+  height: 30px;
+  z-index: 20;
 }
 
 @media (min-width: 1025px) {
-  .open-btn1 {
+  .hamburger-btn {
     display: none;
   }
 }
 
-.open-btn1 span {
-  display: inline-block;
-  -webkit-transition: all .4s;
-  transition: all .4s;
+.hamburger-btn__parts {
+  display: block;
   position: absolute;
-  left: 14px;
-  height: 3px;
-  border-radius: 2px;
-  background-color: #333;
-  width: 45%;
+  -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: transform 0.5s, opacity 0.5s;
+  transition: transform 0.5s, opacity 0.5s, -webkit-transform 0.5s;
 }
 
-.open-btn1 span:nth-of-type(1) {
-  top: 15px;
+.hamburger-btn__parts.-menu {
+  top: 0;
+  font-size: 6px;
+  color: #64629D;
 }
 
-.open-btn1 span:nth-of-type(2) {
-  top: 23px;
+.hamburger-btn__parts.-top {
+  top: 16px;
+  width: 100%;
+  height: 2px;
+  background: #64629D;
 }
 
-.open-btn1 span:nth-of-type(3) {
-  top: 31px;
+.hamburger-btn__parts.-middle {
+  top: 22px;
+  width: 70%;
+  height: 2px;
+  background: #64629D;
 }
 
-.open-btn1.active span:nth-of-type(1) {
-  top: 18px;
-  left: 18px;
-  -webkit-transform: translateY(6px) rotate(-45deg);
-          transform: translateY(6px) rotate(-45deg);
-  width: 45%;
+.hamburger-btn__parts.-bottom {
+  bottom: 0px;
+  width: 100%;
+  height: 2px;
+  background: #64629D;
 }
 
-.open-btn1.active span:nth-of-type(2) {
+.hamburger-btn.active .hamburger-btn__parts.-menu {
   opacity: 0;
 }
 
-.open-btn1.active span:nth-of-type(3) {
-  top: 30px;
-  left: 18px;
-  -webkit-transform: translateY(-6px) rotate(45deg);
-          transform: translateY(-6px) rotate(45deg);
-  width: 45%;
+.hamburger-btn.active .hamburger-btn__parts.-top {
+  -webkit-transform: translateY(0px) rotate(-45deg);
+          transform: translateY(0px) rotate(-45deg);
+}
+
+.hamburger-btn.active .hamburger-btn__parts.-middle {
+  opacity: 0;
+}
+
+.hamburger-btn.active .hamburger-btn__parts.-bottom {
+  -webkit-transform: translateY(-12px) rotate(45deg);
+          transform: translateY(-12px) rotate(45deg);
 }
 
 .hamburger {
-  padding-top: 72px;
-  z-index: 9998;
+  display: block;
+  position: fixed;
+  z-index: 10;
+  top: 52px;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  -webkit-transform: translateX(100vw);
+          transform: translateX(100vw);
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  background-color: #E5E5E5;
+}
+
+@media (min-width: 1025px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+.hamburger__lists {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 80vw;
+  height: 60vh;
+  margin-left: auto;
+}
+
+.hamburger__list {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: .72px;
+}
+
+.hamburger__list + .hamburger__list {
+  padding-top: 40px;
+}
+
+.hamburger__link {
+  padding-left: 36px;
+  position: relative;
+}
+
+.hamburger__link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #64629D;
+  -webkit-transform: translateY(-50%) rotate(45deg);
+          transform: translateY(-50%) rotate(45deg);
+}
+
+.hamburger.active {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.header__cta-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .fv {
